@@ -2,7 +2,7 @@ modul.exports = {
     HOST        : 'localhost',
     USER        : 'root',
     PASSWORD    : '',
-    DB          : 'rental_mobil',
+    DB          : 'express',
     dialect     : 'mysql',
     // timeout request
     pool        : {
