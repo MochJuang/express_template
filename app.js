@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-
+const db = require('./app/models/index')
 const app = express()
 
 // client apa saja yang diperbolehkan untuk request
@@ -23,12 +23,11 @@ app.use(cors(corsOption))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
+// migrate/ sync database
+db.sequelize.sync()
+
 // route
-app.get('/' , (req,res) => {
-    res.json({
-        message : 'Hello Word'
-    })
-})
+require('./app/routes/post.route')(app)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log('server running on port http://localhost:'+ PORT))

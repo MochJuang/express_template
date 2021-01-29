@@ -17,6 +17,6 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
-db.post = require('./post.model')(sequelize, Sequelize)
+db.posts = require('./post.model')(sequelize, Sequelize)
 
-modul.exports = db
+module.exports = db
