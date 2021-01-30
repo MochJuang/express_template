@@ -1,6 +1,11 @@
 const db = require('../models/index')
+const Kategorie = db.kategories
 const Post = db.posts
+const Comment = db.comments
 const Option = db.Sequelize.Op
+
+Post.hasMany(Comment)
+Post.belongsTo(Kategorie)
 
 // create
 exports.create = (req, res) => {
@@ -27,7 +32,7 @@ exports.findAll = (req, res) => {
     const title = req.body.title
     let condition = title ? {title : {[Option.like] : `%${title}%`} } : null
     
-    Post.findAll({where : condition}) 
+    Post.findAll({include : [Kategorie, Comment] ,where : condition}) 
         .then(result => res.status(200).send({
             message : 'Data has in table',
             data    : result
@@ -84,3 +89,4 @@ exports.findAllPublished = (req, res) => {
         }))
         .catch(err => res.status(500).send({message : err.message ||'cannot data published'}))   
 }
+

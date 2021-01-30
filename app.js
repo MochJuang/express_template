@@ -27,7 +27,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 db.sequelize.sync()
 
 // route
-require('./app/routes/post.route')(app)
+require('./app/routes/index')(app)
+
+// factory seeder fake data
+// require('./app/seeder/index')()
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log('server running on port http://localhost:'+ PORT))

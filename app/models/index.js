@@ -17,6 +17,8 @@ const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
 
+db.kategories = require('./kategorie.model')(sequelize, Sequelize)
 db.posts = require('./post.model')(sequelize, Sequelize)
+db.comments = require('./comment.model')(sequelize, Sequelize)
 
 module.exports = db
